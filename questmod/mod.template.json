@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Lauriethefish/QuestPatcher.QMod/main/QuestPatcher.QMod/Resources/qmod.schema.json",
+  "_QPVersion": "0.1.1",
+  "name": "${mod_name}",
+  "id": "${mod_id}",
+  "author": "IMB11 (mineblock11)",
+  "version": "0.1.0",
+  "modloader": "QuestLoader",
+  "packageId": "com.beatgames.beatsaber",
+  "packageVersion": "1.22.0",
+  "description": "A global chat that allows you to talk to and share various information with other players currently online.",
+  "dependencies": [],
+  "modFiles": ["${binary}"],
+  "libraryFiles": [],
+  "fileCopies": []
+}
