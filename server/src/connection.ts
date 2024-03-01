@@ -1,6 +1,7 @@
 import { RawData, WebSocket } from "ws";
-import { ClassBuilder } from "./types/classBuilders";
+import { ClassBuilder } from "./types/packetBuilder";
 import { db } from "./db";
+import { WebsocketMessage } from "./types/packets";
 
 const connections: string[] = [];
 
@@ -47,6 +48,10 @@ export class WebsocketConnection {
 
   public setUserID(id: string) {
     this.userID = id;
+  }
+
+  public send(message: WebsocketMessage) {
+    this.ws.send(message.toJSON());
   }
 
   private onMessage(message: RawData) {
