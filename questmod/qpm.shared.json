@@ -58,6 +58,21 @@
         "id": "codegen",
         "versionRange": "^0.33.0",
         "additionalData": {}
+      },
+      {
+        "id": "paper",
+        "versionRange": "=1.2.20",
+        "additionalData": {}
+      },
+      {
+        "id": "questui",
+        "versionRange": "^0.17.12",
+        "additionalData": {}
+      },
+      {
+        "id": "custom-types",
+        "versionRange": "^0.15.24",
+        "additionalData": {}
       }
     ]
   },
@@ -76,6 +91,20 @@
     },
     {
       "dependency": {
+        "id": "paper",
+        "versionRange": "=1.2.20",
+        "additionalData": {
+          "soLink": "https://github.com/Fernthedev/paperlog/releases/download/v1.2.20/libpaperlog.so",
+          "debugSoLink": "https://github.com/Fernthedev/paperlog/releases/download/v1.2.20/debug_libpaperlog.so",
+          "overrideSoName": "libpaperlog.so",
+          "modLink": "https://github.com/Fernthedev/paperlog/releases/download/v1.2.20/paperlog.qmod",
+          "branchName": "version/v1_2_20"
+        }
+      },
+      "version": "1.2.20"
+    },
+    {
+      "dependency": {
         "id": "libil2cpp",
         "versionRange": "=0.2.5",
         "additionalData": {
@@ -83,6 +112,20 @@
         }
       },
       "version": "0.2.5"
+    },
+    {
+      "dependency": {
+        "id": "custom-types",
+        "versionRange": "=0.15.24",
+        "additionalData": {
+          "soLink": "https://github.com/sc2ad/Il2CppQuestTypePatching/releases/download/v0.15.24/libcustom-types.so",
+          "debugSoLink": "https://github.com/sc2ad/Il2CppQuestTypePatching/releases/download/v0.15.24/debug_libcustom-types.so",
+          "overrideSoName": "libcustom-types.so",
+          "modLink": "https://github.com/sc2ad/Il2CppQuestTypePatching/releases/download/v0.15.24/CustomTypes.qmod",
+          "branchName": "version-v0.15.24"
+        }
+      },
+      "version": "0.15.24"
     },
     {
       "dependency": {
@@ -108,6 +151,44 @@
         }
       },
       "version": "0.33.0"
+    },
+    {
+      "dependency": {
+        "id": "fmt",
+        "versionRange": "=10.0.0",
+        "additionalData": {
+          "headersOnly": true,
+          "branchName": "version/v10_0_0",
+          "compileOptions": {
+            "systemIncludes": [
+              "fmt/include/"
+            ],
+            "cppFlags": [
+              "-DFMT_HEADER_ONLY"
+            ]
+          }
+        }
+      },
+      "version": "10.0.0"
+    },
+    {
+      "dependency": {
+        "id": "questui",
+        "versionRange": "=0.17.12",
+        "additionalData": {
+          "soLink": "https://github.com/darknight1050/QuestUI/releases/download/v0.17.12/libquestui.so",
+          "debugSoLink": "https://github.com/darknight1050/QuestUI/releases/download/v0.17.12/debug_libquestui.so",
+          "overrideSoName": "libquestui.so",
+          "modLink": "https://github.com/darknight1050/QuestUI/releases/download/v0.17.12/QuestUI.qmod",
+          "branchName": "version-v0.17.12",
+          "compileOptions": {
+            "systemIncludes": [
+              "shared/cppcodec"
+            ]
+          }
+        }
+      },
+      "version": "0.17.12"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { WebsocketMessage } from "./packets";
-import { AuthenticationRequest } from "./packets/AuthenticationRequest";
+import { AuthenticationTokenRequest } from "./packets/AuthenticationTokenRequest";
 import { ConnectionAcknowledge } from "./packets/ConnectionAcknowledge";
 import { NewAccountRequest } from "./packets/NewAccountRequest";
 import { TextMessage } from "./packets/TextMessage";
@@ -10,7 +10,7 @@ interface MessageConstructor {
 
 const messageRegistry: Record<string, MessageConstructor> = {
   'connection-acknowledge': ConnectionAcknowledge,
-  'authentication-request': AuthenticationRequest,
+  'authentication-token-request': AuthenticationTokenRequest,
   'new-account-request': NewAccountRequest,
   'text-message': TextMessage,
 };

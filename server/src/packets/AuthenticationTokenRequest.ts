@@ -5,12 +5,12 @@ import { WebsocketMessage } from ".";
 import { InvalidAuthenticationRequest } from "./responses/InvalidAuthenticationRequest";
 import { SuccessfulAuthentication } from "./responses/SuccessfulAuthentication";
 
-export class AuthenticationRequest extends WebsocketMessage {
+export class AuthenticationTokenRequest extends WebsocketMessage {
   public readonly token: string;
 
   constructor(data: { token: string; }) {
     super({
-      id: "authentication-request",
+      id: "authentication-token-request",
       ...data
     });
     this.token = data.token;
