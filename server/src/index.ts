@@ -1,6 +1,6 @@
 import { RawData, WebSocket, WebSocketServer } from "ws";
 import { createServer } from 'http';
-import { ConnectionAcknowledge } from "./types/packets/ConnectionAcknowledge";
+import { ConnectionAcknowledge } from "./packets/ConnectionAcknowledge";
 import { WebsocketConnection } from "./connection";
 
 const server = createServer();

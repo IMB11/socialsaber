@@ -1,7 +1,9 @@
 import { LooseObject } from "trilogy";
-import { WebsocketConnection } from "../../connection";
-import { tokens } from "../../db";
+import { WebsocketConnection } from "../connection";
+import { tokens } from "../db";
 import { WebsocketMessage } from ".";
+import { InvalidAuthenticationRequest } from "./responses/InvalidAuthenticationRequest";
+import { SuccessfulAuthentication } from "./responses/SuccessfulAuthentication";
 
 export class AuthenticationRequest extends WebsocketMessage {
   public readonly token: string;
@@ -19,18 +21,16 @@ export class AuthenticationRequest extends WebsocketMessage {
       const tokenData = await tokens.findOne({ token: this.token }) as LooseObject;
 
       if (!tokenData) {
-        connection.log("Token not found.");
-        return;
+        throw new Error("Invalid token.");
       }
 
       connection.setUserID(tokenData["userID"]);
       const userData = connection.getUserData();
       connection.log("Authenticated user: " + userData["username"]);
-
-    } catch (error) {
-      connection.log("Error in AuthenticationRequest: ");
-      connection.log(error as string);
-      connection
+      connection.send(new SuccessfulAuthentication({ token: this.token }));
+    } catch (error: any) {
+      connection.log("Error in AuthenticationRequest: " + error.message);
+      connection.send(new InvalidAuthenticationRequest({ reason: error.message }));
     }
   }
 }

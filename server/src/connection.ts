@@ -1,7 +1,7 @@
 import { RawData, WebSocket } from "ws";
-import { ClassBuilder } from "./types/packetBuilder";
+import { ClassBuilder } from "./packetBuilder";
 import { db } from "./db";
-import { WebsocketMessage } from "./types/packets";
+import { WebsocketMessage } from "./packets";
 
 const connections: string[] = [];
 

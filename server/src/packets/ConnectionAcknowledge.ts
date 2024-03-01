@@ -1,4 +1,4 @@
-import { WebsocketConnection } from "../../connection";
+import { WebsocketConnection } from "../connection";
 import { WebsocketMessage } from ".";
 
 export class ConnectionAcknowledge extends WebsocketMessage {

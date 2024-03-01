@@ -1,9 +1,11 @@
 import { WebsocketMessage } from "..";
 
-export class InvalidNewAccountRequest extends WebsocketMessage {
-  constructor() {
+
+export class InvalidAuthenticationRequest extends WebsocketMessage {
+  constructor(data: { reason: string }) {
     super({
-      id: "invalid-new-account-request",
+      id: "invalid-authentication-request",
+      ...data
     });
   }
 

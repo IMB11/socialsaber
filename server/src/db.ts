@@ -1,6 +1,6 @@
 import { connect } from 'trilogy';
 
-export const db = connect('../db.sqlite3');
+export const db = connect('./db.sqlite3');
 
 export const users = await db.model('users', {
   username: String,
