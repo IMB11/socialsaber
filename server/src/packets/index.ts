@@ -32,6 +32,10 @@ export abstract class WebsocketMessage {
     return JSON.stringify(this.data);
   }
 
+  public getRawData(): WebsocketMessageData {
+    return this.data;
+  }
+
   public getID(): string {
     return this.data.id;
   }

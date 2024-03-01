@@ -1,9 +1,9 @@
 import { RawData, WebSocket } from "ws";
 import { ClassBuilder } from "./packetBuilder";
-import { db } from "./db";
+import { db, users } from "./db";
 import { WebsocketMessage } from "./packets";
 
-const connections: string[] = [];
+export const connections: Map<string, WebsocketConnection> = new Map();
 
 function generateStringID(): string {
   return Math.random().toString(36).substring(2, 15);
@@ -19,10 +19,10 @@ export class WebsocketConnection {
 
     // Register connection id with connections array.
     let uniqueID = generateStringID();
-    while (connections.includes(uniqueID)) {
+    while (connections.has(uniqueID)) {
       uniqueID = generateStringID();
     }
-    connections.push(uniqueID);
+    connections.set(uniqueID, this);
     this.uniqueID = uniqueID;
 
 
@@ -33,9 +33,9 @@ export class WebsocketConnection {
     this.log("Registered new connection.");
   }
 
-  public getUserData(): any {
+  public async getUserData(): Promise<any> {
     if (this.userID === undefined) return undefined;
-    return db.find("users", { id: this.userID });
+    return await users.findOne({ id: this.userID });
   }
 
   public getUniqueID(): string {
@@ -51,6 +51,8 @@ export class WebsocketConnection {
   }
 
   public send(message: WebsocketMessage) {
+    if (this.ws === undefined) return;
+    if (this.ws.readyState !== WebSocket.OPEN) return;
     this.ws.send(message.toJSON());
   }
 
@@ -77,6 +79,7 @@ export class WebsocketConnection {
 
   private onClose() {
     this.log("Connection closed.");
+    connections.delete(this.uniqueID);
   }
 
   private onError(error: Error) {

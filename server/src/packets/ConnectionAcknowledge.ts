@@ -8,7 +8,7 @@ export class ConnectionAcknowledge extends WebsocketMessage {
     });
   }
 
-  public async manageMessage(connection: WebsocketConnection): Promise<void> {
+  public override async manageMessage(connection: WebsocketConnection): Promise<void> {
     connection.log("Called manageMessage on ConnectionAcknowledge - this doesn't do anything though.");
   }
 }

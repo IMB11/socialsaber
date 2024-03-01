@@ -1,10 +1,10 @@
 import { WebsocketMessage } from "..";
 import { WebsocketConnection } from "../../connection";
 
-export class SuccessfulAuthentication extends WebsocketMessage {
-  constructor(data: { token: string }) {
+export class GenericError extends WebsocketMessage {
+  constructor(data: { reason: string }) {
     super({
-      id: "successful-authentication",
+      id: "generic-error",
       ...data
     });
   }

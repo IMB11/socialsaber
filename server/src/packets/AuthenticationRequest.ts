@@ -16,7 +16,7 @@ export class AuthenticationRequest extends WebsocketMessage {
     this.token = data.token;
   }
 
-  public async manageMessage(connection: WebsocketConnection): Promise<void> {
+  public override async manageMessage(connection: WebsocketConnection): Promise<void> {
     try {
       const tokenData = await tokens.findOne({ token: this.token }) as LooseObject;
 
@@ -25,8 +25,8 @@ export class AuthenticationRequest extends WebsocketMessage {
       }
 
       connection.setUserID(tokenData["userID"]);
-      const userData = connection.getUserData();
-      connection.log("Authenticated user: " + userData["username"]);
+      const userData = await connection.getUserData();
+      connection.log("Authenticated user: " + userData.username);
       connection.send(new SuccessfulAuthentication({ token: this.token }));
     } catch (error: any) {
       connection.log("Error in AuthenticationRequest: " + error.message);

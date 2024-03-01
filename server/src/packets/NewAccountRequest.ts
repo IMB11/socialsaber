@@ -18,7 +18,7 @@ export class NewAccountRequest extends WebsocketMessage {
     this.password = data.password;
   }
 
-  public async manageMessage(connection: WebsocketConnection): Promise<void> {
+  public override async manageMessage(connection: WebsocketConnection): Promise<void> {
     try {
       const existingUser = await users.findOne({ username: this.username }) as LooseObject;
 
